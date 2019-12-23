@@ -15,24 +15,50 @@ export default (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: payload,
+        loading: false
+      };
     case ADD_CONTACT:
-      return { ...state, contacts: [...state.contacts, payload] };
+      return {
+        ...state,
+        contacts: [...state.contacts, payload],
+        loading: false
+      };
     case UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map(contact =>
           contact.id === payload.id ? payload : contact
-        )
+        ),
+        loading: false
       };
     case DELETE_CONTACT:
       return {
         ...state,
-        contacts: state.contacts.filter(contact => contact.id !== payload)
+        contacts: state.contacts.filter(contact => contact.id !== payload),
+        loading: false
+      };
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        currentContact: null
       };
     case SET_CURRENT_CONTACT:
-      return { ...state, currentContact: payload };
+      return {
+        ...state,
+        currentContact: payload
+      };
     case CLEAR_CURRENT_CONTACT:
-      return { ...state, currentContact: null };
+      return {
+        ...state,
+        currentContact: null
+      };
     case FILTER_CONTACTS:
       return {
         ...state,
@@ -42,14 +68,15 @@ export default (state, action) => {
         })
       };
     case CLEAR_FILTER:
-      return { ...state, filtered: null };
-    // case GET_CONTACTS:
-    //   return { ...state, contacts: payload };
-    // case CONTACT_ERROR:
-    //   return {
-    //     ...state,
-    //     error: payload
-    //   };
+      return {
+        ...state,
+        filtered: null
+      };
+    case CONTACT_ERROR:
+      return {
+        ...state,
+        error: payload
+      };
     default:
       return state;
   }
