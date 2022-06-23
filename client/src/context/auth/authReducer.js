@@ -6,10 +6,10 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
 } from '../types';
 
-export default (state, action) => {
+const authReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -30,7 +30,7 @@ export default (state, action) => {
         isAuthenticated: false,
         loading: false,
         user: null,
-        error: payload
+        error: payload,
       };
     case CLEAR_ERRORS:
       return { ...state, error: null };
@@ -38,3 +38,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default authReducer;
