@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'
 
-import AlertContext from '../../context/alert/alertContext';
-import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext'
+import AuthContext from '../../context/auth/authContext'
 
-const Login = props => {
-  const alertContext = useContext(AlertContext);
-  const authContext = useContext(AuthContext);
+const Login = (props) => {
+  const alertContext = useContext(AlertContext)
+  const authContext = useContext(AuthContext)
 
-  const { setAlert } = alertContext;
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { setAlert } = alertContext
+  const { login, error, clearErrors, isAuthenticated } = authContext
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/');
+      props.history.push('/')
     }
 
     if (error === 'Invalid Credentials') {
-      setAlert(error, 'danger');
-      clearErrors();
+      setAlert(error, 'danger')
+      clearErrors()
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, props.history])
 
   const [user, setUser] = useState({
     email: '',
-    password: ''
-  });
+    password: '',
+  })
 
-  const { email, password } = user;
+  const { email, password } = user
 
-  const handleChange = e =>
-    setUser({ ...user, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setUser({ ...user, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (email === '' || password === '') {
-      setAlert('Please enter all fields', 'danger');
+      setAlert('Please enter all fields', 'danger')
     } else {
-      login({ email, password });
+      login({ email, password })
     }
-  };
+  }
 
   return (
     <div className='form-container'>
@@ -74,7 +74,7 @@ const Login = props => {
         />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
