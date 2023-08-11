@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^5.8.1"
+    "mongoose": "^5.13.20"
   },
   "devDependencies": {
     "concurrently": "^5.0.1",
